@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders - KANDY WORLD</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .font-black { font-weight: 900; }
+    </style>
+</head>
+<body class="bg-gray-100 flex flex-col min-h-screen">
+
+    <script src="components/header.js"></script>
+
+    <main class="max-w-[1920px] xl:px-12 mx-auto px-4 py-12 w-full flex-grow flex flex-col lg:flex-row gap-10">
+        <!-- Sidebar Navigation -->
+        <aside class="w-full lg:w-80 flex-shrink-0">
+            <div class="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm sticky top-32">
+                <div class="flex items-center gap-4 mb-6 pb-6 border-b border-gray-100">
+                    <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center font-bold text-xl uppercase shadow-md" id="user-initial">U</div>
+                    <div class="min-w-0">
+                        <p class="font-bold text-gray-900 truncate" id="sidebar-user-name">User Name</p>
+                        <p class="text-xs text-gray-500 truncate" id="sidebar-user-email">user@example.com</p>
+                    </div>
+                </div>
+                <nav class="space-y-2">
+                    <button id="tab-orders" class="w-full flex items-center gap-3 px-4 py-3 bg-gray-50 text-black font-bold rounded-xl transition-all">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                        My Orders
+                    </button>
+                    <button id="tab-account" class="w-full flex items-center gap-3 px-4 py-3 text-gray-500 font-medium hover:bg-gray-50 hover:text-black rounded-xl transition-all">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                        Account Details
+                    </button>
+                    <button id="tab-logout" class="w-full flex items-center gap-3 px-4 py-3 text-red-500 font-medium hover:bg-red-50 rounded-xl transition-all mt-4">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                        Logout
+                    </button>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div class="flex-grow min-w-0">
+            <!-- Orders View -->
+            <div id="view-orders" class="space-y-8 block">
+                <h2 class="text-3xl font-normal text-gray-900 mb-8 uppercase tracking-wider">Order History</h2>
+                <div id="orders-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Orders will be injected here -->
+                </div>
+            </div>
+
+            <!-- Account Details View -->
+            <div id="view-account" class="space-y-8 hidden">
+                <h2 class="text-3xl font-normal text-gray-900 mb-8 uppercase tracking-wider">Account Details</h2>
+                <div class="bg-white border border-gray-200 rounded-2xl p-8 sm:p-10 shadow-sm max-w-4xl">
+                    <form id="account-details-form" class="space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label for="acc-first-name" class="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-2">First Name</label>
+                                <input type="text" id="acc-first-name" class="block w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-gray-900 focus:bg-white focus:ring-2 focus:ring-black focus:border-black transition-all sm:text-sm">
+                            </div>
+                            <div>
+                                <label for="acc-last-name" class="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-2">Last Name</label>
+                                <input type="text" id="acc-last-name" class="block w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-gray-900 focus:bg-white focus:ring-2 focus:ring-black focus:border-black transition-all sm:text-sm">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="acc-email" class="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-2">Email Address</label>
+                            <input type="email" id="acc-email" disabled class="block w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-100 text-gray-500 cursor-not-allowed sm:text-sm">
+                        </div>
+                        <div>
+                            <label for="acc-phone" class="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-2">Phone Number</label>
+                            <input type="tel" id="acc-phone" class="block w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-gray-900 focus:bg-white focus:ring-2 focus:ring-black focus:border-black transition-all sm:text-sm">
+                        </div>
+                        <div>
+                            <label for="acc-address" class="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-2">Default Shipping Address</label>
+                            <textarea id="acc-address" rows="3" class="block w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-gray-900 focus:bg-white focus:ring-2 focus:ring-black focus:border-black transition-all sm:text-sm"></textarea>
+                        </div>
+                        <button type="submit" id="save-account-btn" class="bg-black text-white font-bold py-3.5 px-8 rounded-xl hover:bg-gray-800 transition-colors shadow-lg hover:shadow-xl mt-4 flex items-center justify-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Save Changes
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="components/footer.js"></script>
+    
+    <div id="address-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md p-6">
+            <h2 class="text-xl font-bold mb-4">Update Shipping Address</h2>
+            <form id="address-form" class="space-y-4">
+                <input type="hidden" id="modal-order-id">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="first-name" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                        <input type="text" id="first-name" required class="block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500">
+                    </div>
+                    <div>
+                        <label for="last-name" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                        <input type="text" id="last-name" required class="block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500">
+                    </div>
+                </div>
+                <div>
+                    <label for="address" class="block text-sm font-medium text-gray-700 mb-1">Address</label>
+                    <input type="text" id="address" required class="block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500">
+                </div>
+                <div>
+                    <label for="city" class="block text-sm font-medium text-gray-700 mb-1">Town / City</label>
+                    <input type="text" id="city" required class="block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500">
+                </div>
+                <div>
+                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                    <input type="tel" id="phone" required class="block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500">
+                </div>
+                <div class="flex justify-end gap-3 pt-4">
+                    <button type="button" id="cancel-update-btn" class="px-4 py-2 bg-gray-200 rounded-md text-sm font-medium hover:bg-gray-300">Cancel</button>
+                    <button type="submit" class="px-4 py-2 bg-black text-white rounded-md text-sm font-medium hover:bg-gray-800">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div id="toast-notification" class="fixed bottom-5 right-5 bg-gray-800 text-white py-2 px-5 rounded-lg shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 ease-out">
+        <p></p>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, query, where, onSnapshot, orderBy, doc, updateDoc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDglDGMO-cknnl7JR7cD89_4yWdLRkvLBY",
+            authDomain: "ssdfashion-af744.firebaseapp.com",
+            projectId: "ssdfashion-af744",
+            storageBucket: "ssdfashion-af744.appspot.com",
+            messagingSenderId: "233163735482",
+            appId: "1:233163735482:web:14ecbc0b46a28fb02e9d83"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        // --- UI Elements ---
+        const ordersContainer = document.getElementById('orders-container');
+        const addressModal = document.getElementById('address-modal');
+        const addressForm = document.getElementById('address-form');
+        const cancelUpdateBtn = document.getElementById('cancel-update-btn');
+        const tabOrders = document.getElementById('tab-orders');
+        const tabAccount = document.getElementById('tab-account');
+        const tabLogout = document.getElementById('tab-logout');
+        const viewOrders = document.getElementById('view-orders');
+        const viewAccount = document.getElementById('view-account');
+        
+        const accFirstName = document.getElementById('acc-first-name');
+        const accLastName = document.getElementById('acc-last-name');
+        const accEmail = document.getElementById('acc-email');
+        const accPhone = document.getElementById('acc-phone');
+        const accAddress = document.getElementById('acc-address');
+        const accountDetailsForm = document.getElementById('account-details-form');
+        const saveAccountBtn = document.getElementById('save-account-btn');
+
+        let currentOrders = [];
+
+        // --- Toast Notification ---
+        function showToast(message) {
+            const toast = document.getElementById('toast-notification');
+            toast.querySelector('p').textContent = message;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // --- Status Badge Generator ---
+        function getStatusBadge(status) {
+            status = status || 'Pending'; // Default to Pending if status is missing
+            let statusText = status;
+            let bgColor = 'bg-gray-100';
+            let textColor = 'text-gray-800';
+
+            switch (status.toLowerCase()) {
+                case 'new':
+                    statusText = 'Pending';
+                    bgColor = 'bg-yellow-100';
+                    textColor = 'text-yellow-800';
+                    break;
+                case 'pending':
+                    bgColor = 'bg-yellow-100';
+                    textColor = 'text-yellow-800';
+                    break;
+                case 'confirmed':
+                    bgColor = 'bg-green-100';
+                    textColor = 'text-green-800';
+                    break;
+                case 'rejected':
+                    bgColor = 'bg-red-100';
+                    textColor = 'text-red-800';
+                    break;
+            }
+            return `<span class="px-3 py-1 text-xs font-medium rounded-full ${bgColor} ${textColor}">${statusText}</span>`;
+        }
+
+        // --- Order Card HTML Generator ---
+        function createOrderCardHTML(order) {
+            const orderData = order.data();
+            const orderId = order.id;
+            const item = orderData.item;
+            const customer = orderData.customer;
+            const payment = orderData.payment;
+            const timestamp = orderData.timestamp.toDate();
+            const formattedDate = timestamp.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            
+            const isUpdatable = orderData.status.toLowerCase() === 'new' || orderData.status.toLowerCase() === 'pending';
+            
+            const updateButtonHTML = isUpdatable 
+                ? `<button data-order-id="${orderId}" class="update-address-btn text-sm font-medium text-teal-600 hover:underline">Update Address</button>`
+                : `<p class="text-sm text-gray-500">Address cannot be updated now.</p>`;
+
+            return `
+                <div class="bg-white border rounded-lg shadow-sm overflow-hidden">
+                    <div class="p-4 bg-gray-50 border-b flex justify-between items-center">
+                        <div>
+                            <p class="font-bold text-gray-800">Order #${orderId.substring(0, 8)}</p>
+                            <p class="text-sm text-gray-600">Placed on ${formattedDate}</p>
+                        </div>
+                        ${getStatusBadge(orderData.status)}
+                    </div>
+                    <div class="p-4 md:flex md:space-x-6">
+                        <img src="${item.imageUrl || 'https://placehold.co/150x150/e2e8f0/64748b?text=No+Image'}" alt="${item.name}" class="w-32 h-32 object-cover rounded-md mb-4 md:mb-0">
+                        <div class="flex-grow space-y-4">
+                            <div>
+                                <h3 class="font-semibold text-lg">${item.name}</h3>
+                                <p class="text-sm text-gray-600">Size: ${item.size} | Qty: ${item.quantity}</p>
+                                <p class="text-lg font-bold mt-2">Rs. ${payment.total.toLocaleString()}</p>
+                            </div>
+                            <div class="border-t pt-4">
+                                <h4 class="font-semibold text-gray-700">Shipping to:</h4>
+                                <p class="text-sm text-gray-600">${customer.firstName} ${customer.lastName}</p>
+                                <p class="text-sm text-gray-600">${customer.address}, ${customer.city}</p>
+                                <p class="text-sm text-gray-600">${customer.phone}</p>
+                                <div class="mt-2">${updateButtonHTML}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // --- Fetch and Display Orders ---
+        function listenForOrders(userId) {
+            const q = query(collection(db, "orders"), where("userId", "==", userId), orderBy("timestamp", "desc"));
+
+            onSnapshot(q, (querySnapshot) => {
+                ordersContainer.innerHTML = '';
+                currentOrders = [];
+
+                if (querySnapshot.empty) {
+                    ordersContainer.innerHTML = `<div class="text-center py-12 bg-white rounded-lg shadow-sm border"><p class="text-gray-600">You haven't placed any orders yet.</p></div>`;
+                    return;
+                }
+                
+                querySnapshot.forEach((doc) => {
+                    currentOrders.push({ id: doc.id, ...doc.data() });
+                    ordersContainer.innerHTML += createOrderCardHTML(doc);
+                });
+            });
+        }
+        
+        // --- Address Modal Logic ---
+        function openAddressModal(orderId) {
+            const order = currentOrders.find(o => o.id === orderId);
+            if (!order) return;
+            
+            const customer = order.customer;
+            document.getElementById('modal-order-id').value = orderId;
+            document.getElementById('first-name').value = customer.firstName || '';
+            document.getElementById('last-name').value = customer.lastName || '';
+            document.getElementById('address').value = customer.address || '';
+            document.getElementById('city').value = customer.city || '';
+            document.getElementById('phone').value = customer.phone || '';
+            
+            addressModal.classList.remove('hidden');
+        }
+
+        function closeAddressModal() {
+            addressModal.classList.add('hidden');
+            addressForm.reset();
+        }
+
+        // --- Event Listeners ---
+        document.addEventListener('DOMContentLoaded', () => {
+            onAuthStateChanged(auth, async (user) => {
+                const userTextEl = document.getElementById('user-text');
+                const cartCountEl = document.getElementById('cart-count');
+
+                if (user) {
+                    userTextEl.textContent = "My Account";
+                    
+                    // Populate Sidebar info
+                    const userEmailStr = user.email || "user@example.com";
+                    document.getElementById('sidebar-user-email').textContent = userEmailStr;
+                    document.getElementById('user-initial').textContent = userEmailStr.charAt(0).toUpperCase();
+                    accEmail.value = userEmailStr;
+                    
+                    // Fetch account details
+                    const userDocRef = doc(db, "users", user.uid);
+                    try {
+                        const userDocSnap = await getDoc(userDocRef);
+                        if (userDocSnap.exists()) {
+                            const data = userDocSnap.data();
+                            if (data.firstName) accFirstName.value = data.firstName;
+                            if (data.lastName) accLastName.value = data.lastName;
+                            if (data.phone) accPhone.value = data.phone;
+                            if (data.address) accAddress.value = data.address;
+                            if (data.firstName || data.lastName) {
+                                document.getElementById('sidebar-user-name').textContent = `${data.firstName || ''} ${data.lastName || ''}`.trim();
+                            } else {
+                                document.getElementById('sidebar-user-name').textContent = "Valued Customer";
+                            }
+                        } else {
+                            document.getElementById('sidebar-user-name').textContent = "Valued Customer";
+                        }
+                    } catch(err) {
+                        console.error("Error fetching user data", err);
+                    }
+
+                    listenForOrders(user.uid);
+                    
+                    // Listen for cart count
+                    onSnapshot(collection(db, 'carts', user.uid, 'items'), snapshot => {
+                        cartCountEl.textContent = snapshot.size;
+                        cartCountEl.classList.toggle('hidden', snapshot.size === 0);
+                    });
+                } else {
+                    window.location.href = 'index.html'; // Redirect to login page if not logged in
+                }
+            });
+
+            // --- Tab Navigation ---
+            tabOrders.addEventListener('click', () => {
+                tabOrders.classList.add('bg-gray-50', 'text-black', 'font-bold');
+                tabOrders.classList.remove('text-gray-500', 'font-medium', 'hover:bg-gray-50');
+                tabAccount.classList.remove('bg-gray-50', 'text-black', 'font-bold');
+                tabAccount.classList.add('text-gray-500', 'font-medium', 'hover:bg-gray-50');
+                
+                viewOrders.classList.remove('hidden');
+                viewAccount.classList.add('hidden');
+            });
+
+            tabAccount.addEventListener('click', () => {
+                tabAccount.classList.add('bg-gray-50', 'text-black', 'font-bold');
+                tabAccount.classList.remove('text-gray-500', 'font-medium', 'hover:bg-gray-50');
+                tabOrders.classList.remove('bg-gray-50', 'text-black', 'font-bold');
+                tabOrders.classList.add('text-gray-500', 'font-medium', 'hover:bg-gray-50');
+                
+                viewAccount.classList.remove('hidden');
+                viewOrders.classList.add('hidden');
+            });
+
+            tabLogout.addEventListener('click', async () => {
+                try {
+                    await signOut(auth);
+                    window.location.href = 'index.html';
+                } catch (error) {
+                    console.error('Error signing out', error);
+                }
+            });
+
+            // --- Save Account Details ---
+            accountDetailsForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                if (!auth.currentUser) return;
+                
+                saveAccountBtn.disabled = true;
+                saveAccountBtn.innerHTML = 'Saving...';
+                
+                const userDocRef = doc(db, "users", auth.currentUser.uid);
+                const newData = {
+                    firstName: accFirstName.value,
+                    lastName: accLastName.value,
+                    phone: accPhone.value,
+                    address: accAddress.value,
+                };
+                
+                try {
+                    await setDoc(userDocRef, newData, { merge: true });
+                    document.getElementById('sidebar-user-name').textContent = `${newData.firstName} ${newData.lastName}`.trim() || "Valued Customer";
+                    showToast("Account details updated successfully!");
+                } catch (err) {
+                    console.error("Error saving account details", err);
+                    showToast("Failed to save account details.");
+                } finally {
+                    saveAccountBtn.disabled = false;
+                    saveAccountBtn.innerHTML = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Save Changes`;
+                }
+            });
+
+            // Modal event listeners
+            ordersContainer.addEventListener('click', (e) => {
+                if (e.target.classList.contains('update-address-btn')) {
+                    const orderId = e.target.dataset.orderId;
+                    openAddressModal(orderId);
+                }
+            });
+
+            cancelUpdateBtn.addEventListener('click', closeAddressModal);
+            addressModal.addEventListener('click', (e) => {
+                if (e.target === addressModal) closeAddressModal();
+            });
+
+            addressForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const orderId = document.getElementById('modal-order-id').value;
+                const newCustomerData = {
+                    firstName: document.getElementById('first-name').value,
+                    lastName: document.getElementById('last-name').value,
+                    address: document.getElementById('address').value,
+                    city: document.getElementById('city').value,
+                    phone: document.getElementById('phone').value,
+                };
+
+                const orderRef = doc(db, 'orders', orderId);
+                try {
+                    await updateDoc(orderRef, { customer: newCustomerData });
+                    showToast("Address updated successfully!");
+                    closeAddressModal();
+                } catch (error) {
+                    console.error("Error updating address: ", error);
+                    showToast("Failed to update address. Please try again.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

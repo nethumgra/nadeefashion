@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - KANDY WORLD</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Font eka black wenas kara, oyage index eke wage */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9fafb;
+        }
+
+        .font-black {
+            font-weight: 900;
+        }
+
+        .checkmark-container {
+            width: 100px;
+            height: 100px;
+        }
+
+        .checkmark__circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 3;
+            stroke-miterlimit: 10;
+            stroke: #0d9488;
+            fill: none;
+            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+
+        .checkmark {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: block;
+            stroke-width: 3;
+            stroke: #fff;
+            stroke-miterlimit: 10;
+            margin: 0 auto;
+            box-shadow: inset 0px 0px 0px #0d9488;
+            animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+        }
+
+        .checkmark__check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        }
+
+        @keyframes stroke {
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes scale {
+
+            0%,
+            100% {
+                transform: none;
+            }
+
+            50% {
+                transform: scale3d(1.1, 1.1, 1);
+            }
+        }
+
+        @keyframes fill {
+            100% {
+                box-shadow: inset 0px 0px 0px 50px #0d9488;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+
+    <script src="components/header.js"></script>
+
+    <div class="max-w-6xl mx-auto pt-8 pb-4 px-4 hidden md:block">
+        <div class="flex items-center justify-between relative max-w-4xl mx-auto">
+            <div class="absolute left-0 top-1/2 w-full h-px bg-gray-300 -z-10 -translate-y-1/2"></div>
+            <div class="flex flex-col items-center gap-2 bg-gray-50 px-2">
+                <div
+                    class="w-8 h-8 rounded-full border border-gray-400 bg-white flex items-center justify-center text-gray-500">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <span class="text-xs font-medium text-gray-500">Shopping Cart</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 bg-gray-50 px-2">
+                <div
+                    class="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center font-bold text-sm">
+                    2</div>
+                <span class="text-xs font-bold text-black">Checkout</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 bg-gray-50 px-2">
+                <div
+                    class="w-8 h-8 rounded-full border border-gray-400 bg-white text-gray-500 flex items-center justify-center font-medium text-sm">
+                    3</div>
+                <span class="text-xs font-medium text-gray-500">Payment</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 bg-gray-50 px-2">
+                <div
+                    class="w-8 h-8 rounded-full border border-gray-400 bg-white text-gray-500 flex items-center justify-center font-medium text-sm">
+                    4</div>
+                <span class="text-xs font-medium text-gray-500">Confirmation</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="max-w-6xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-12 gap-12" id="main-content">
+        <!-- Left Column -->
+        <div class="lg:col-span-7 space-y-10">
+            <!-- 1. Contact Info -->
+            <section>
+                <h2 class="text-xl font-bold text-gray-900 mb-4">1. Contact Information</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label for="contact-email" class="block text-sm font-medium text-gray-700 mb-1">Email
+                            address</label>
+                        <input type="email" id="contact-email" placeholder="Enter your email address"
+                            class="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:ring-black focus:border-black outline-none"
+                            required>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <input type="checkbox" id="marketing-optin"
+                            class="w-4 h-4 text-black border-gray-300 rounded focus:ring-black accent-black">
+                        <label for="marketing-optin" class="text-sm text-gray-700">Email me with news and offers</label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. Shipping Address -->
+            <section>
+                <h2 class="text-xl font-bold text-gray-900 mb-4">2. Shipping Address</h2>
+                <form id="shipping-form" class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="full-name" class="block text-sm font-medium text-gray-700 mb-1">Full
+                                Name</label>
+                            <input type="text" id="full-name" placeholder="Enter your full name" required
+                                class="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:ring-black focus:border-black outline-none">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                            <input type="tel" id="phone" placeholder="Enter your phone number" required
+                                class="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:ring-black focus:border-black outline-none">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="country" class="block text-sm font-medium text-gray-700 mb-1">Country /
+                            Region</label>
+                        <select id="country"
+                            class="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:ring-black focus:border-black outline-none bg-white">
+                            <option value="Sri Lanka">Sri Lanka</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="address" class="block text-sm font-medium text-gray-700 mb-1">Address</label>
+                        <input type="text" id="address" placeholder="House number and street name" required
+                            class="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:ring-black focus:border-black outline-none">
+                    </div>
+                    <div>
+                        <label for="apartment" class="block text-sm font-medium text-gray-700 mb-1">Apartment, suite,
+                            etc. (optional)</label>
+                        <input type="text" id="apartment" placeholder="Apartment, suite, unit, building, etc."
+                            class="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:ring-black focus:border-black outline-none">
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div>
+                            <label for="city" class="block text-sm font-medium text-gray-700 mb-1">City</label>
+                            <input type="text" id="city" placeholder="Enter city" required
+                                class="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:ring-black focus:border-black outline-none">
+                        </div>
+                        <div>
+                            <label for="state" class="block text-sm font-medium text-gray-700 mb-1">State /
+                                Province</label>
+                            <select id="state"
+                                class="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:ring-black focus:border-black outline-none bg-white">
+                                <option value="Western">Western</option>
+                                <option value="Central">Central</option>
+                                <option value="Southern">Southern</option>
+                                <option value="Northern">Northern</option>
+                                <option value="Eastern">Eastern</option>
+                                <option value="North Western">North Western</option>
+                                <option value="North Central">North Central</option>
+                                <option value="Uva">Uva</option>
+                                <option value="Sabaragamuwa">Sabaragamuwa</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="zip-code" class="block text-sm font-medium text-gray-700 mb-1">Postal
+                                Code</label>
+                            <input type="text" id="zip-code" placeholder="Enter postal code" required
+                                class="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:ring-black focus:border-black outline-none">
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 mt-2 hidden">
+                        <!-- Hidden because we can't fully save custom address structure to auth easily without modifying user model schema more -->
+                        <input type="checkbox" id="save-address"
+                            class="w-4 h-4 text-black border-gray-300 rounded focus:ring-black accent-black">
+                        <label for="save-address" class="text-sm text-gray-700">Save this address for next time</label>
+                    </div>
+                </form>
+            </section>
+
+            <!-- 3. Shipping Method -->
+            <section>
+                <h2 class="text-xl font-bold text-gray-900 mb-4">3. Shipping Method</h2>
+                <div class="border border-gray-200 rounded-md divide-y divide-gray-200 bg-gray-50">
+                    <label class="flex items-center justify-between p-4 cursor-pointer">
+                        <div class="flex items-center gap-3">
+                            <input type="radio" name="shipping-method" value="0"
+                                class="w-4 h-4 text-black focus:ring-black border-gray-300 accent-black" checked>
+                            <div>
+                                <div class="text-sm font-medium text-gray-900">Standard Shipping</div>
+                                <div class="text-xs text-gray-500">3 - 6 business days</div>
+                            </div>
+                        </div>
+                        <span class="text-sm font-semibold text-gray-900">Free</span>
+                    </label>
+                    <label class="flex items-center justify-between p-4 cursor-pointer">
+                        <div class="flex items-center gap-3">
+                            <input type="radio" name="shipping-method" value="750"
+                                class="w-4 h-4 text-black focus:ring-black border-gray-300 accent-black">
+                            <div>
+                                <div class="text-sm font-medium text-gray-900">Express Shipping</div>
+                                <div class="text-xs text-gray-500">1 - 3 business days</div>
+                            </div>
+                        </div>
+                        <span class="text-sm font-semibold text-gray-900">Rs. 750</span>
+                    </label>
+                </div>
+            </section>
+
+            <!-- 4. Payment Method -->
+            <section>
+                <h2 class="text-xl font-bold text-gray-900 mb-4">4. Payment Method</h2>
+                <div class="border border-gray-200 rounded-md bg-white mb-6">
+                    <label
+                        class="flex items-center justify-between p-4 cursor-pointer border-2 border-black rounded-md">
+                        <div class="flex items-center gap-3">
+                            <input type="radio" name="payment-method" value="cod"
+                                class="w-4 h-4 text-black focus:ring-black border-gray-300 accent-black" checked>
+                            <div>
+                                <div class="text-sm font-medium text-gray-900">Cash on Delivery</div>
+                                <div class="text-xs text-gray-500">Pay with cash upon delivery</div>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+
+                <button id="place-order-btn"
+                    class="w-full bg-black text-white font-bold text-lg py-4 rounded-md hover:bg-gray-800 transition mt-6 flex justify-between px-6 items-center">
+                    <span class="flex items-center gap-2"><svg class="w-5 h-5" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+                            </path>
+                        </svg> Pay Now</span>
+                    <span id="btn-total-price">Rs. 0</span>
+                </button>
+                <div class="mt-4 flex items-center justify-center gap-2 text-gray-500 text-sm">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+                        </path>
+                    </svg>
+                    <span>Your payment information is secure and encrypted.</span>
+                </div>
+            </section>
+        </div>
+
+        <!-- Right Column (Order Summary) -->
+        <div class="lg:col-span-5 bg-[#f9fafb] p-6 rounded-lg border border-gray-200 h-fit">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-lg font-bold text-gray-900">Order Summary</h2>
+                <a href="cart.html" class="text-sm font-medium text-gray-600 underline hover:text-black">Edit Cart</a>
+            </div>
+
+            <!-- Item Container -->
+            <div id="order-item-container" class="pb-6 border-b border-gray-200 mb-6">
+                <!-- Rendered dynamically -->
+                <p id="loading-item" class="text-sm text-gray-500">Loading item...</p>
+            </div>
+
+            <div class="space-y-4 text-sm mb-6 pb-6 border-b border-gray-200">
+                <div class="flex justify-between text-gray-600">
+                    <span>Subtotal</span>
+                    <span id="subtotal-price" class="text-gray-900 font-medium">Rs. 0</span>
+                </div>
+                <div class="flex justify-between text-gray-600">
+                    <span>Shipping</span>
+                    <span id="shipping-fee" class="text-gray-900 font-medium">Free</span>
+                </div>
+                <div class="flex justify-between text-gray-600">
+                    <span>Discount</span>
+                    <span class="text-gray-900 font-medium">- Rs. 0</span>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-end mb-8">
+                <div>
+                    <span class="block text-lg font-bold text-gray-900">Total</span>
+                    <span class="block text-xs text-gray-500">(Incl. of all taxes)</span>
+                </div>
+                <span id="total-price" class="text-2xl font-black text-gray-900">Rs. 0</span>
+            </div>
+
+            <!-- Badges -->
+            <div class="space-y-4">
+                <div class="flex gap-4">
+                    <div class="mt-1">
+                        <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-gray-900">Secure Checkout</h4>
+                        <p class="text-xs text-gray-500 mt-1">Your data is protected with 256-bit SSL encryption.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="mt-1">
+                        <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
+                            </path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-gray-900">Easy Returns</h4>
+                        <p class="text-xs text-gray-500 mt-1">Not happy with your purchase? We offer easy 14-day
+                            returns.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="mt-1">
+                        <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-gray-900">Customer Support</h4>
+                        <p class="text-xs text-gray-500 mt-1">We're here to help you 24/7.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="success-overlay" class="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center hidden">
+        <div class="checkmark-container"><svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+                <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+            </svg></div>
+        <h2 class="text-2xl font-bold text-gray-800 mt-6">Your order is placed!</h2>
+        <p class="text-gray-600 mt-2">Redirecting to homepage...</p>
+    </div>
+
+
+
+    <script src="components/modals.js"></script>
+    <script src="components/footer.js"></script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, doc, getDoc, setDoc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { getAuth, onAuthStateChanged, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDglDGMO-cknnl7JR7cD89_4yWdLRkvLBY",
+            authDomain: "ssdfashion-af744.firebaseapp.com",
+            projectId: "ssdfashion-af744",
+            storageBucket: "ssdfashion-af744.appspot.com",
+            messagingSenderId: "233163735482",
+            appId: "1:233163735482:web:14ecbc0b46a28fb02e9d83"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const mainContent = document.getElementById('main-content');
+            const itemContainer = document.getElementById('order-item-container');
+            const subtotalEl = document.getElementById('subtotal-price');
+            const shippingFeeEl = document.getElementById('shipping-fee');
+            const totalEl = document.getElementById('total-price');
+            const btnTotalPriceEl = document.getElementById('btn-total-price');
+            const placeOrderBtn = document.getElementById('place-order-btn');
+            const shippingRadios = document.querySelectorAll('input[name="shipping-method"]');
+
+            let DELIVERY_FEE = 0; // Default to standard (Free)
+            const itemDataString = sessionStorage.getItem('checkoutItem');
+
+            function prefillForm(address) {
+                if (address.fullName) document.getElementById('full-name').value = address.fullName;
+                if (address.address) document.getElementById('address').value = address.address;
+                if (address.city) document.getElementById('city').value = address.city;
+                if (address.phone) document.getElementById('phone').value = address.phone;
+                if (address.contactEmail) document.getElementById('contact-email').value = address.contactEmail;
+                if (address.country) document.getElementById('country').value = address.country;
+                if (address.apartment) document.getElementById('apartment').value = address.apartment;
+                if (address.state) document.getElementById('state').value = address.state;
+                if (address.zipCode) document.getElementById('zip-code').value = address.zipCode;
+            }
+
+            if (!itemDataString) {
+                mainContent.innerHTML = `<div class="lg:col-span-12 text-center py-12 bg-white rounded-lg shadow-sm border"><h2 class="text-2xl font-bold text-gray-800">No item selected!</h2><p class="text-gray-600 mt-2">Please select an item to buy now.</p><a href="index.html" class="inline-block bg-black text-white font-bold py-2 px-6 rounded-md hover:bg-gray-800 transition mt-6">Go to Shopping</a></div>`;
+                return;
+            }
+
+            const item = JSON.parse(itemDataString);
+
+            // Render Product in Order Summary
+            itemContainer.innerHTML = `
+                <div class="flex gap-4">
+                    <div class="w-16 h-16 bg-gray-200 rounded-md overflow-hidden flex-shrink-0 border border-gray-300 relative">
+                        <img src="${item.imageUrl || 'https://placehold.co/100x100?text=Image'}" alt="Product" class="w-full h-full object-cover">
+                        <span class="absolute -top-2 -right-2 bg-gray-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">${item.quantity}</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="text-sm font-bold text-gray-900">${item.name}</h4>
+                        <p class="text-xs text-gray-500 mt-1">${item.color || 'N/A'} &bull; Size ${item.size}</p>
+                    </div>
+                    <div class="text-sm font-medium text-gray-900">
+                        Rs. ${(item.price * item.quantity).toLocaleString()}
+                    </div>
+                </div>`;
+
+            function updatePrices() {
+                const subtotal = item.price * item.quantity;
+                const totalPrice = subtotal + DELIVERY_FEE;
+                subtotalEl.textContent = `Rs. ${subtotal.toLocaleString()}`;
+                shippingFeeEl.textContent = DELIVERY_FEE === 0 ? 'Free' : `Rs. ${DELIVERY_FEE.toLocaleString()}`;
+                totalEl.textContent = `Rs. ${totalPrice.toLocaleString()}`;
+                btnTotalPriceEl.textContent = `Rs. ${totalPrice.toLocaleString()}`;
+                return { subtotal, totalPrice };
+            }
+
+            // Initial price calc
+            updatePrices();
+
+            // Listen for shipping method changes
+            shippingRadios.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    DELIVERY_FEE = parseInt(e.target.value);
+                    updatePrices();
+                });
+            });
+
+            placeOrderBtn.addEventListener('click', async () => {
+                const form = document.getElementById('shipping-form');
+                const emailInput = document.getElementById('contact-email');
+
+                if (!emailInput.checkValidity()) {
+                    emailInput.reportValidity();
+                    return;
+                }
+
+                if (!form.checkValidity()) {
+                    form.reportValidity();
+                    return;
+                }
+
+                placeOrderBtn.disabled = true;
+                placeOrderBtn.innerHTML = `<span class="flex items-center gap-2">Processing...</span>`;
+
+                const shippingAddress = {
+                    contactEmail: emailInput.value,
+                    marketingOptIn: document.getElementById('marketing-optin').checked,
+                    fullName: document.getElementById('full-name').value,
+                    phone: document.getElementById('phone').value,
+                    country: document.getElementById('country').value,
+                    address: document.getElementById('address').value,
+                    apartment: document.getElementById('apartment').value,
+                    city: document.getElementById('city').value,
+                    state: document.getElementById('state').value,
+                    zipCode: document.getElementById('zip-code').value,
+                };
+
+                const currentUser = auth.currentUser;
+                const { subtotal, totalPrice } = updatePrices();
+
+                const orderData = {
+                    customer: shippingAddress,
+                    item: item,
+                    payment: {
+                        method: 'Cash on Delivery',
+                        subtotal: subtotal,
+                        deliveryFee: DELIVERY_FEE,
+                        total: totalPrice
+                    },
+                    status: "New",
+                    timestamp: serverTimestamp(),
+                    userId: currentUser ? currentUser.uid : 'guest'
+                };
+
+                if (currentUser && document.getElementById('save-address').checked) {
+                    try {
+                        const userDocRef = doc(db, "users", currentUser.uid);
+                        await setDoc(userDocRef, { shippingAddress }, { merge: true });
+                    } catch (error) {
+                        console.error("Could not save user address:", error);
+                    }
+                }
+
+                try {
+                    const docRef = await addDoc(collection(db, "orders"), orderData);
+                    sessionStorage.removeItem('checkoutItem');
+                    window.location.href = `order-confirmation.html?orderId=${docRef.id}`;
+                } catch (error) {
+                    console.error("Error placing order: ", error);
+                    alert("There was an error placing your order. Please try again.");
+                    placeOrderBtn.disabled = false;
+                    placeOrderBtn.innerHTML = `<span class="flex items-center gap-2"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg> Pay Now</span><span id="btn-total-price">Rs. ${totalPrice.toLocaleString()}</span>`;
+                }
+            });
+
+            onAuthStateChanged(auth, async (user) => {
+                if (user) {
+                    const userDocRef = doc(db, "users", user.uid);
+                    const userDocSnap = await getDoc(userDocRef);
+                    if (userDocSnap.exists() && userDocSnap.data().shippingAddress) {
+                        prefillForm(userDocSnap.data().shippingAddress);
+                    }
+                }
+            });
+
+            setupAuthModal();
+        });
+
+        function setupAuthModal() {
+            const authModal = document.getElementById('auth-modal');
+            const userButton = document.getElementById('user-button');
+            const loginLink = document.getElementById('login-link');
+            if (loginLink) {
+                loginLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    authModal.classList.remove('hidden');
+                });
+            }
+
+            if (!authModal) return;
+
+            const loginTab = authModal.querySelector('#login-tab');
+            const signupTab = authModal.querySelector('#signup-tab');
+            const loginForm = authModal.querySelector('#login-form');
+            const signupForm = authModal.querySelector('#signup-form');
+
+            if (userButton) {
+                userButton.addEventListener('click', () => {
+                    if (auth.currentUser) {
+                        window.location.href = 'my-orders.html';
+                    } else {
+                        authModal.classList.remove('hidden');
+                    }
+                });
+            }
+            authModal.addEventListener('click', e => { if (e.target === authModal) authModal.classList.add('hidden'); });
+            document.getElementById('close-auth-modal')?.addEventListener('click', () => authModal.classList.add('hidden'));
+
+            loginTab.addEventListener('click', () => {
+                loginTab.classList.add('bg-gray-50', 'text-black');
+                loginTab.classList.remove('bg-white', 'text-gray-400');
+                signupTab.classList.add('bg-white', 'text-gray-400');
+                signupTab.classList.remove('bg-gray-50', 'text-black');
+                document.getElementById('login-indicator').classList.replace('bg-transparent', 'bg-black');
+                document.getElementById('signup-indicator').classList.replace('bg-black', 'bg-transparent');
+                document.getElementById('auth-title').textContent = 'Welcome Back';
+                document.getElementById('auth-subtitle').textContent = 'Enter your details to access your account.';
+                loginForm.classList.remove('hidden'); signupForm.classList.add('hidden');
+            });
+            signupTab.addEventListener('click', () => {
+                signupTab.classList.add('bg-gray-50', 'text-black');
+                signupTab.classList.remove('bg-white', 'text-gray-400');
+                loginTab.classList.add('bg-white', 'text-gray-400');
+                loginTab.classList.remove('bg-gray-50', 'text-black');
+                document.getElementById('signup-indicator').classList.replace('bg-transparent', 'bg-black');
+                document.getElementById('login-indicator').classList.replace('bg-black', 'bg-transparent');
+                document.getElementById('auth-title').textContent = 'Create Account';
+                document.getElementById('auth-subtitle').textContent = 'Join KANDY WORLD today.';
+                signupForm.classList.remove('hidden'); loginForm.classList.add('hidden');
+            });
+            loginForm.addEventListener('submit', async e => { e.preventDefault(); try { await signInWithEmailAndPassword(auth, loginForm['login-email'].value, loginForm['login-password'].value); authModal.classList.add('hidden'); } catch (error) { alert(error.message); } });
+            signupForm.addEventListener('submit', async e => { e.preventDefault(); try { await createUserWithEmailAndPassword(auth, signupForm['signup-email'].value, signupForm['signup-password'].value); authModal.classList.add('hidden'); } catch (error) { alert(error.message); } });
+        }
+    </script>
+</body>
+
+</html>
