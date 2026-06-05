@@ -30,38 +30,62 @@
             transition: opacity 0.7s ease, visibility 0.7s ease;
         }
 
-        .symbols-container {
+        .kw-symbols-container {
             display: flex;
-            gap: 30px;
+            gap: 20px;
             margin-bottom: 20px;
+            align-items: center;
         }
 
-        .symbol {
-            width: 60px;
-            height: 60px;
+        .kw-symbol {
+            width: 38px;
+            height: 38px;
             position: relative;
         }
 
-        .shape {
+        .kw-shape-bg {
             fill: none;
-            stroke: #2A2F45; /* Dark navy color */
-            stroke-width: 8;
-            stroke-linecap: round;
+            stroke: rgba(0, 0, 0, 0.05);
+            stroke-width: 6;
             stroke-linejoin: round;
         }
 
-        .dot {
-            fill: #4B4DED; /* vibrant blue */
+        .kw-shape-arc {
+            fill: none;
+            stroke-width: 8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transform-origin: 50px 50px;
         }
 
-        .brand-text {
-            font-size: 24px;
+        .kw-shape-rose {
+            stroke: #8A3A54; /* Dark Rose */
+        }
+
+        .kw-shape-black {
+            stroke: #000000; /* Black */
+        }
+
+        .kw-anim-cw {
+            animation: spinClockwise 1.5s linear infinite;
+        }
+
+        .kw-anim-ccw {
+            animation: spinCounterClockwise 1.5s linear infinite;
+        }
+
+        .kw-arc-triangle { stroke-dasharray: 230; stroke-dashoffset: 70; }
+        .kw-arc-circle { stroke-dasharray: 220; stroke-dashoffset: 70; }
+        .kw-arc-square { stroke-dasharray: 280; stroke-dashoffset: 90; }
+
+        .kw-brand-text {
+            font-size: 20px;
             font-weight: 700;
-            color: #2A2F45;
-            letter-spacing: 2px;
+            color: #8A3A54; /* Dark Rose */
+            letter-spacing: 3px;
             opacity: 0;
-            transform: translateY(20px);
-            animation: textReveal 1s ease 2s forwards; /* appear after 2 seconds */
+            transform: translateY(15px);
+            animation: textReveal 0.8s ease 1.2s forwards;
         }
 
         @keyframes textReveal {
@@ -71,107 +95,44 @@
             }
         }
 
-        /* Dash animations for the paths */
-        .path-circle {
-            stroke-dasharray: 251; /* 2 * pi * 40 = 251.3 */
-            stroke-dashoffset: 251;
-            animation: drawPath 1s ease-in-out forwards;
+        @keyframes spinClockwise {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        .path-triangle {
-            stroke-dasharray: 240; /* approx */
-            stroke-dashoffset: 240;
-            animation: drawPath 1s ease-in-out 0.3s forwards;
+        @keyframes spinCounterClockwise {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(-360deg); }
         }
-
-        .path-square {
-            stroke-dasharray: 280; /* 4 * 70 = 280 */
-            stroke-dashoffset: 280;
-            animation: drawPath 1s ease-in-out 0.6s forwards;
-        }
-
-        @keyframes drawPath {
-            to {
-                stroke-dashoffset: 0;
-            }
-        }
-
-        /* Dot Animations */
-        .dot-circle {
-            opacity: 0;
-            animation: fadeDot 0.1s forwards, orbitCircle 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-
-        .dot-triangle {
-            opacity: 0;
-            animation: fadeDot 0.1s 0.3s forwards, orbitTriangle 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
-        }
-
-        .dot-square {
-            opacity: 0;
-            animation: fadeDot 0.1s 0.6s forwards, orbitSquare 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.6s forwards;
-        }
-
-        @keyframes fadeDot {
-            to { opacity: 1; }
-        }
-
-        @keyframes orbitCircle {
-            0% { transform: rotate(0deg) translate(0, -40px) rotate(0deg); }
-            100% { transform: rotate(360deg) translate(0, -40px) rotate(-360deg); }
-        }
-
-        /* SVG origin is center for rotation */
-        svg {
-            overflow: visible;
-        }
-
-        /* For SVG dots we just use transform-origin */
-        .dot {
-            transform-origin: 50px 50px;
-        }
-
     </style>
 </head>
 <body>
 
     <div id="kw-preloader">
-        <div class="symbols-container">
-            <div class="symbol circle">
-                <svg viewBox="0 0 100 100">
-                    <circle cx="50" cy="50" r="40" class="shape path-circle" />
-                    <circle cx="50" cy="50" r="8" class="dot dot-circle" />
+        <div class="kw-symbols-container">
+            <!-- Left: Triangle (Dark Rose) -->
+            <div class="kw-symbol">
+                <svg viewBox="0 0 100 100" style="overflow: visible;">
+                    <polygon points="50,15 85,85 15,85" class="kw-shape-bg" />
+                    <polygon points="50,15 85,85 15,85" class="kw-shape-arc kw-shape-rose kw-arc-triangle kw-anim-cw" />
                 </svg>
             </div>
-            <div class="symbol triangle">
-                <svg viewBox="0 0 100 100">
-                    <!-- Triangle points from bottom-left to top to bottom-right -->
-                    <polygon points="50,15 90,85 10,85" class="shape path-triangle" />
-                    <!-- Dot will animate using CSS offset-path -->
-                    <circle cx="0" cy="0" r="8" class="dot" style="offset-path: polygon(50px 15px, 90px 85px, 10px 85px); offset-rotate: auto; animation: orbitPath 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards; opacity: 0;" />
+            <!-- Center: Circle (Black) -->
+            <div class="kw-symbol">
+                <svg viewBox="0 0 100 100" style="overflow: visible;">
+                    <circle cx="50" cy="50" r="35" class="kw-shape-bg" />
+                    <circle cx="50" cy="50" r="35" class="kw-shape-arc kw-shape-black kw-arc-circle kw-anim-ccw" />
                 </svg>
             </div>
-            <div class="symbol square">
-                <svg viewBox="0 0 100 100">
-                    <rect x="15" y="15" width="70" height="70" class="shape path-square" />
-                    <circle cx="0" cy="0" r="8" class="dot" style="offset-path: path('M 15 15 L 85 15 L 85 85 L 15 85 Z'); offset-rotate: auto; animation: orbitPath 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.6s forwards; opacity: 0;" />
+            <!-- Right: Square (Dark Rose) -->
+            <div class="kw-symbol">
+                <svg viewBox="0 0 100 100" style="overflow: visible;">
+                    <rect x="15" y="15" width="70" height="70" class="kw-shape-bg" />
+                    <rect x="15" y="15" width="70" height="70" class="kw-shape-arc kw-shape-rose kw-arc-square kw-anim-cw" />
                 </svg>
             </div>
         </div>
-        <div class="brand-text">NADEE FASHION</div>
+        <div class="kw-brand-text">Nadee Fashion</div>
     </div>
-
-    <style>
-        @keyframes orbitPath {
-            0% {
-                offset-distance: 0%;
-                opacity: 1;
-            }
-            100% {
-                offset-distance: 100%;
-                opacity: 1;
-            }
-        }
-    </style>
 </body>
 </html>
