@@ -4,17 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout - KANDY WORLD</title>
+    <title>Checkout - Nadee Fashion</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="css/variables.css">
     <style>
         /* Font eka black wenas kara, oyage index eke wage */
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #f9fafb;
+            background-color: var(--background);
         }
 
         .font-black {
@@ -31,7 +32,7 @@
             stroke-dashoffset: 166;
             stroke-width: 3;
             stroke-miterlimit: 10;
-            stroke: #0d9488;
+            stroke: var(--primary);
             fill: none;
             animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
         }
@@ -45,7 +46,7 @@
             stroke: #fff;
             stroke-miterlimit: 10;
             margin: 0 auto;
-            box-shadow: inset 0px 0px 0px #0d9488;
+            box-shadow: inset 0px 0px 0px var(--primary);
             animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
         }
 
@@ -76,7 +77,7 @@
 
         @keyframes fill {
             100% {
-                box-shadow: inset 0px 0px 0px 50px #0d9488;
+                box-shadow: inset 0px 0px 0px 50px var(--primary);
             }
         }
     </style>
@@ -379,22 +380,9 @@
     <script src="components/footer.js"></script>
 
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getFirestore, collection, addDoc, doc, getDoc, setDoc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-        import { getAuth, onAuthStateChanged, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyDglDGMO-cknnl7JR7cD89_4yWdLRkvLBY",
-            authDomain: "ssdfashion-af744.firebaseapp.com",
-            projectId: "ssdfashion-af744",
-            storageBucket: "ssdfashion-af744.appspot.com",
-            messagingSenderId: "233163735482",
-            appId: "1:233163735482:web:14ecbc0b46a28fb02e9d83"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const auth = getAuth(app);
+        import { db, auth } from './firebase-config.js';
+        import { collection, addDoc, doc, getDoc, setDoc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { onAuthStateChanged, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
         document.addEventListener('DOMContentLoaded', () => {
             const mainContent = document.getElementById('main-content');
@@ -595,7 +583,7 @@
                 document.getElementById('signup-indicator').classList.replace('bg-transparent', 'bg-black');
                 document.getElementById('login-indicator').classList.replace('bg-black', 'bg-transparent');
                 document.getElementById('auth-title').textContent = 'Create Account';
-                document.getElementById('auth-subtitle').textContent = 'Join KANDY WORLD today.';
+                document.getElementById('auth-subtitle').textContent = 'Join Nadee Fashion today.';
                 signupForm.classList.remove('hidden'); loginForm.classList.add('hidden');
             });
             loginForm.addEventListener('submit', async e => { e.preventDefault(); try { await signInWithEmailAndPassword(auth, loginForm['login-email'].value, loginForm['login-password'].value); authModal.classList.add('hidden'); } catch (error) { alert(error.message); } });

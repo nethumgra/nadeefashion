@@ -1,0 +1,230 @@
+:root {
+  --primary: #9C525B;
+  --primary-hover: #803C44;
+  --secondary: #D7A19E;
+  --accent: #D7A19E;
+  --background: #FFF8F9;
+  --surface: #FFF8F9;
+  --card: #FFF8F9;
+  --text: #1C1C1C;
+  --text-muted: #6B6B6B;
+  --border: #F5E7E8;
+  --input-border: #F5E7E8;
+  --success: #28a745;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --shadow: rgba(0, 0, 0, 0.05);
+  --radius: 0.5rem;
+  --blush: #F2D7D9;
+}
+
+/* ===== Global ===== */
+body {
+    background-color: var(--background);
+    color: var(--text);
+}
+
+body.bg-gray-50,
+body.bg-gray-100,
+body.bg-white {
+    background-color: var(--background) !important;
+}
+
+/* ===== Teal → Rose ===== */
+.text-teal-600 {
+    color: var(--primary) !important;
+}
+
+.hover\:text-teal-600:hover {
+    color: var(--primary) !important;
+}
+
+.bg-teal-600 {
+    background-color: var(--primary) !important;
+}
+
+.hover\:bg-teal-700:hover {
+    background-color: var(--primary-hover) !important;
+}
+
+.border-teal-500,
+.border-teal-600 {
+    border-color: var(--primary) !important;
+}
+
+.focus\:border-teal-500:focus {
+    border-color: var(--primary) !important;
+}
+
+.focus\:ring-teal-500:focus {
+    --tw-ring-color: var(--primary) !important;
+}
+
+.peer:checked ~ .peer-checked\:bg-teal-600 {
+    background-color: var(--primary) !important;
+}
+
+.peer:checked ~ .peer-checked\:border-teal-600 {
+    border-color: var(--primary) !important;
+}
+
+nav form button[type="submit"]:hover {
+    background-color: var(--primary) !important;
+}
+
+/* ===== Primary buttons (not modal overlays) ===== */
+button.bg-black,
+a.bg-black,
+input[type="submit"].bg-black,
+.size-btn.bg-black {
+    background-color: var(--primary-hover) !important;
+    color: #fff !important;
+}
+
+button.bg-black:hover,
+a.bg-black:hover,
+button.hover\:bg-gray-800:hover,
+a.hover\:bg-gray-800:hover {
+    background-color: var(--primary) !important;
+}
+
+/* Top promo bar */
+div.bg-black.text-white.py-2 {
+    background-color: var(--primary-hover) !important;
+}
+
+/* Auth tab indicator */
+#login-indicator.bg-black,
+#signup-indicator.bg-black {
+    background-color: var(--primary) !important;
+}
+
+/* Cart badge */
+#cart-count.bg-black {
+    background-color: var(--primary-hover) !important;
+}
+
+/* ===== Backgrounds ===== */
+.bg-\[\#f8f7f2\] {
+    background-color: var(--background) !important;
+}
+
+.bg-\[\#faf9f6\] {
+    background-color: var(--surface) !important;
+}
+
+.bg-\[\#f9fafb\] {
+    background-color: var(--blush) !important;
+}
+
+.bg-\[\#111111\] {
+    background-color: var(--primary-hover) !important;
+}
+
+.bg-\[\#fafafa\] {
+    background-color: var(--surface) !important;
+}
+
+.bg-\[\#dfcabc\] {
+    background-color: var(--blush) !important;
+    border-color: var(--primary) !important;
+}
+
+.hover\:bg-\[\#d4bca9\]:hover {
+    background-color: var(--primary) !important;
+    color: #fff !important;
+}
+
+/* ===== Nav & cards ===== */
+nav.bg-white {
+    background-color: var(--surface) !important;
+    border-color: var(--border) !important;
+}
+
+.bg-white {
+    background-color: var(--surface) !important;
+}
+
+/* ===== Footer & admin sidebar ===== */
+aside.bg-gray-800 {
+    background-color: var(--primary-hover) !important;
+}
+
+#toast-notification.bg-gray-800 {
+    background-color: var(--primary-hover) !important;
+}
+
+/* ===== Text ===== */
+.text-gray-900,
+.text-gray-800 {
+    color: var(--text) !important;
+}
+
+.text-gray-600,
+.text-gray-500,
+.text-gray-400 {
+    color: var(--text-muted) !important;
+}
+
+.text-black {
+    color: var(--text) !important;
+}
+
+/* ===== Borders ===== */
+.border-gray-100,
+.border-gray-200,
+.border-gray-300 {
+    border-color: var(--border) !important;
+}
+
+.divide-gray-200 > :not([hidden]) ~ :not([hidden]) {
+    border-color: var(--border) !important;
+}
+
+/* ===== Form focus rings ===== */
+.focus\:ring-black:focus,
+.focus\:border-black:focus {
+    --tw-ring-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+}
+
+/* ===== Swiper & scrollbar ===== */
+.swiper-pagination-bullet-active {
+    background-color: var(--primary) !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: var(--blush);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--primary);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-hover);
+}
+
+/* ===== Checkout checkmark ===== */
+.checkmark-container svg .checkmark-circle {
+    stroke: var(--primary);
+}
+
+.checkmark-container svg .checkmark-check {
+    stroke: #fff;
+}
+
+.checkmark-container.active .checkmark-circle {
+    box-shadow: inset 0 0 0 var(--primary);
+}
+
+@keyframes fill-checkmark {
+    100% {
+        box-shadow: inset 0 0 0 50px var(--primary);
+    }
+}
+
+/* ===== Product detail selected swatch ===== */
+.color-swatch.selected {
+    border-color: var(--primary) !important;
+}

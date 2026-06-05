@@ -20,8 +20,8 @@ export const headerHTML = `
             <!-- Center: Logo -->
             <div class="absolute left-1/2 transform -translate-x-1/2 flex items-center">
                 <a href="index.html" class="flex items-center">
-                    <img src="https://i.ibb.co/PyNpHPH/Untitled-design-3.png" alt="Kandy World Logo" class="h-8 md:h-10 mr-2">
-                    <span class="text-xl md:text-2xl font-semibold tracking-widest text-black">KANDY WORLD</span>
+                    <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Nadee Fashion Logo" class="h-8 md:h-10 mr-2 site-logo-img">
+                    <span class="text-xl md:text-2xl font-semibold tracking-widest text-black">Nadee Fashion</span>
                 </a>
             </div>
 
@@ -56,7 +56,7 @@ export const footerHTML = `
         <div class="w-full max-w-[1920px] xl:px-12 mx-auto py-10 px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-lg font-bold mb-4">KANDY WORLD</h3>
+                    <h3 class="text-lg font-bold mb-4">Nadee Fashion</h3>
                     <p class="text-gray-400 text-sm">
                         Discover premium quality t-shirts designed for comfort and style. Your new favorite tee awaits.
                     </p>
@@ -95,7 +95,7 @@ export const footerHTML = `
                 </div>
             </div>
             <div class="mt-8 pt-8 border-t border-gray-700 text-center text-sm text-gray-400">
-                <p>&copy; 2025 KANDY WORLD. All Rights Reserved.</p>
+                <p>&copy; 2025 Nadee Fashion. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
@@ -179,7 +179,7 @@ export const modalsHTML = `
     </div>
 
     <div id="mobile-filter-sidebar" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden lg:hidden">
-        <div id="mobile-filter-panel" class="sidebar-panel absolute top-0 left-0 h-full w-full max-w-sm bg-white shadow-xl transform -translate-x-full flex flex-col">
+        <div id="mobile-filter-panel" class="sidebar-panel absolute top-0 right-0 h-full w-full max-w-sm bg-white shadow-xl transform translate-x-full flex flex-col">
             <div class="flex items-center justify-between p-4 border-b">
                 <h2 class="text-lg font-semibold">Filters</h2>
                 <button id="close-filter-btn" class="p-2 rounded-full hover:bg-gray-100"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>

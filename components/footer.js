@@ -1,5 +1,5 @@
 document.write(`
-<footer class="bg-[#f9fafb] border-t border-gray-200">
+<footer class="border-t border-gray-200" style="background-color: var(--blush);">
     <!-- Top Feature Bar -->
     <div class="border-b border-gray-200">
         <div class="w-full max-w-[1920px] xl:px-12 mx-auto py-10 px-4 sm:px-6 lg:px-8">
@@ -52,8 +52,8 @@ document.write(`
             <!-- Column 1: Brand -->
             <div class="lg:col-span-3">
                 <a href="index.html" class="flex items-center gap-2 mb-6">
-                    <img src="https://i.ibb.co/PyNpHPH/Untitled-design-3.png" alt="Logo" class="h-8">
-                    <span class="text-xl font-black tracking-wider text-black">KANDY WORLD</span>
+                    <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Logo" class="h-8 site-logo-img">
+                    <span class="text-xl font-black tracking-wider text-black">Nadee Fashion</span>
                 </a>
                 <p class="text-sm text-gray-600 leading-relaxed mb-8">
                     Discover a versatile range of modern essentials, crafted for comfort, style, and quality. From casuals to classics, we bring you looks that fit every occasion.
@@ -144,7 +144,7 @@ document.write(`
     </div>
 
     <!-- Bottom Footer -->
-    <div class="bg-[#111111] text-white">
+    <div class="text-white" style="background-color: var(--primary-hover);">
         <div class="w-full max-w-[1920px] xl:px-12 mx-auto py-6 px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
             
             <div class="flex items-center gap-6 text-sm text-gray-300">
@@ -162,7 +162,7 @@ document.write(`
             </div>
 
             <div class="text-sm text-gray-400">
-                &copy; 2024 Kandy World. All rights reserved.
+                &copy; 2024 Nadee Fashion. All rights reserved.
             </div>
 
             <div class="flex items-center gap-2">

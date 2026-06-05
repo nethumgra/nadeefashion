@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preloader Test</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f8f9fc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        #kw-preloader {
+            position: fixed;
+            inset: 0;
+            background: #f8f9fc;
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: opacity 0.7s ease, visibility 0.7s ease;
+        }
+
+        .symbols-container {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .symbol {
+            width: 60px;
+            height: 60px;
+            position: relative;
+        }
+
+        .shape {
+            fill: none;
+            stroke: #2A2F45; /* Dark navy color */
+            stroke-width: 8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .dot {
+            fill: #4B4DED; /* vibrant blue */
+        }
+
+        .brand-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2A2F45;
+            letter-spacing: 2px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: textReveal 1s ease 2s forwards; /* appear after 2 seconds */
+        }
+
+        @keyframes textReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Dash animations for the paths */
+        .path-circle {
+            stroke-dasharray: 251; /* 2 * pi * 40 = 251.3 */
+            stroke-dashoffset: 251;
+            animation: drawPath 1s ease-in-out forwards;
+        }
+
+        .path-triangle {
+            stroke-dasharray: 240; /* approx */
+            stroke-dashoffset: 240;
+            animation: drawPath 1s ease-in-out 0.3s forwards;
+        }
+
+        .path-square {
+            stroke-dasharray: 280; /* 4 * 70 = 280 */
+            stroke-dashoffset: 280;
+            animation: drawPath 1s ease-in-out 0.6s forwards;
+        }
+
+        @keyframes drawPath {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        /* Dot Animations */
+        .dot-circle {
+            opacity: 0;
+            animation: fadeDot 0.1s forwards, orbitCircle 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .dot-triangle {
+            opacity: 0;
+            animation: fadeDot 0.1s 0.3s forwards, orbitTriangle 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+        }
+
+        .dot-square {
+            opacity: 0;
+            animation: fadeDot 0.1s 0.6s forwards, orbitSquare 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.6s forwards;
+        }
+
+        @keyframes fadeDot {
+            to { opacity: 1; }
+        }
+
+        @keyframes orbitCircle {
+            0% { transform: rotate(0deg) translate(0, -40px) rotate(0deg); }
+            100% { transform: rotate(360deg) translate(0, -40px) rotate(-360deg); }
+        }
+
+        /* SVG origin is center for rotation */
+        svg {
+            overflow: visible;
+        }
+
+        /* For SVG dots we just use transform-origin */
+        .dot {
+            transform-origin: 50px 50px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="kw-preloader">
+        <div class="symbols-container">
+            <div class="symbol circle">
+                <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" class="shape path-circle" />
+                    <circle cx="50" cy="50" r="8" class="dot dot-circle" />
+                </svg>
+            </div>
+            <div class="symbol triangle">
+                <svg viewBox="0 0 100 100">
+                    <!-- Triangle points from bottom-left to top to bottom-right -->
+                    <polygon points="50,15 90,85 10,85" class="shape path-triangle" />
+                    <!-- Dot will animate using CSS offset-path -->
+                    <circle cx="0" cy="0" r="8" class="dot" style="offset-path: polygon(50px 15px, 90px 85px, 10px 85px); offset-rotate: auto; animation: orbitPath 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards; opacity: 0;" />
+                </svg>
+            </div>
+            <div class="symbol square">
+                <svg viewBox="0 0 100 100">
+                    <rect x="15" y="15" width="70" height="70" class="shape path-square" />
+                    <circle cx="0" cy="0" r="8" class="dot" style="offset-path: path('M 15 15 L 85 15 L 85 85 L 15 85 Z'); offset-rotate: auto; animation: orbitPath 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.6s forwards; opacity: 0;" />
+                </svg>
+            </div>
+        </div>
+        <div class="brand-text">NADEE FASHION</div>
+    </div>
+
+    <style>
+        @keyframes orbitPath {
+            0% {
+                offset-distance: 0%;
+                opacity: 1;
+            }
+            100% {
+                offset-distance: 100%;
+                opacity: 1;
+            }
+        }
+    </style>
+</body>
+</html>
