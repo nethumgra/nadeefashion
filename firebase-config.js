@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
-import { getFirestore, doc, onSnapshot, setDoc, serverTimestamp, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, doc, onSnapshot, setDoc, serverTimestamp, collection, getDocs, query, orderBy, enableIndexedDbPersistence } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { getAuth, setPersistence, browserLocalPersistence, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 // Your web app's Firebase configuration
@@ -20,6 +20,11 @@ export const analytics = getAnalytics(app);
 
 // Initialize Cloud Firestore and export it
 export const db = getFirestore(app);
+
+// Enable offline persistence (caching) for faster page loads
+enableIndexedDbPersistence(db).catch((err) => {
+    console.error("Firebase persistence error:", err.code);
+});
 
 // Initialize Firebase Auth and export it
 export const auth = getAuth(app);

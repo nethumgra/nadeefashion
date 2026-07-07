@@ -1774,6 +1774,24 @@
                 if (wishlistBtn) toggleWishlistItem(wishlistBtn.dataset.productId);
             });
 
+
+            // Infinite Scroll
+            window.addEventListener('scroll', async () => {
+                if (isLoadingMore || !hasMoreProducts) return;
+                const scrollPosition = window.innerHeight + window.scrollY;
+                const pageHeight = document.documentElement.scrollHeight;
+                
+                if (scrollPosition >= pageHeight - 800) {
+                    isLoadingMore = true;
+                    try {
+                        await loadProducts(true);
+                    } catch (e) {
+                        console.error('Infinite scroll error:', e);
+                    }
+                    isLoadingMore = false;
+                }
+            });
+
         });
     </script>
 </body>

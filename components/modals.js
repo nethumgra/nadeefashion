@@ -1,8 +1,8 @@
 document.write(`<!-- Mobile Navigation Drawer -->
     <div id="mobile-nav-drawer" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden lg:hidden">
-        <div id="mobile-nav-panel" class="sidebar-panel absolute top-0 left-0 h-full w-full max-w-xs bg-white shadow-xl transform -translate-x-full flex flex-col">
+        <div id="mobile-nav-panel" class="sidebar-panel absolute top-0 left-0 h-full w-full max-w-xs shadow-xl transform -translate-x-full flex flex-col" style="background: url('assets/sakura-bg.png') center/cover no-repeat; background-color: #fffafb;">
             <!-- Header -->
-            <div class="flex items-center justify-between p-4 border-b">
+            <div class="flex items-center justify-between p-4 border-b border-pink-100">
                 <span class="text-lg font-medium text-gray-900">Categories</span>
                 <button onclick="toggleMobileNavDrawer(false)" class="p-2 rounded-full hover:bg-gray-100 text-gray-500">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
