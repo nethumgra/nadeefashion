@@ -32,28 +32,30 @@ setPersistence(auth, browserLocalPersistence)
 // --- ImgBB UPLOAD HELPER FUNCTION ---
 const IMGBB_API_KEY = "fd49c76998051779cbe0f58f9e048ccc"; // <-- මේ වගේ ඔයාගේ key එක දාන්න// !! IMPORTANT: මෙතනට ඔයාගේ ImgBB API Key එක දාන්න
 
-export async function uploadImageToImgBB(file, statusCallback) {
+export async function uploadImageToImgBB(file, statusCallback, skipCompression = false) {
     if (statusCallback) {
         statusCallback(`Uploading ${file.name}...`);
     }
 
-    // Convert File to WebP Base64 and compress using Canvas
+    // Convert File to WebP Base64 and optionally compress using Canvas
     const base64Data = await new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.onload = (e) => {
             const img = new Image();
             img.onload = () => {
-                // Resize logic for compression (Max width/height 1200px)
-                const MAX_SIZE = 1200;
                 let width = img.width;
                 let height = img.height;
 
-                if (width > height && width > MAX_SIZE) {
-                    height = Math.round((height * MAX_SIZE) / width);
-                    width = MAX_SIZE;
-                } else if (height > MAX_SIZE) {
-                    width = Math.round((width * MAX_SIZE) / height);
-                    height = MAX_SIZE;
+                if (!skipCompression) {
+                    // Resize logic for compression (Max width/height 1200px)
+                    const MAX_SIZE = 1200;
+                    if (width > height && width > MAX_SIZE) {
+                        height = Math.round((height * MAX_SIZE) / width);
+                        width = MAX_SIZE;
+                    } else if (height > MAX_SIZE) {
+                        width = Math.round((width * MAX_SIZE) / height);
+                        height = MAX_SIZE;
+                    }
                 }
 
                 const canvas = document.createElement('canvas');
@@ -61,8 +63,10 @@ export async function uploadImageToImgBB(file, statusCallback) {
                 canvas.height = height;
                 const ctx = canvas.getContext('2d');
                 ctx.drawImage(img, 0, 0, width, height);
-                // Convert to WebP format (quality 0.75 for better compression)
-                const dataURL = canvas.toDataURL('image/webp', 0.75);
+                
+                // Convert to WebP format (quality 0.95 if skipCompression, else 0.75)
+                const quality = skipCompression ? 0.95 : 0.75;
+                const dataURL = canvas.toDataURL('image/webp', quality);
                 resolve(dataURL.split(',')[1]); // Get raw base64
             };
             img.onerror = reject;
@@ -139,7 +143,8 @@ async function loadGlobalCategories() {
         if (desktopNav) {
             let html = `<a href="index.html#product-grid-container" onclick="window.handleCategoryClick(event, '')" class="hover:text-teal-600 transition whitespace-nowrap">New Arrivals</a>`;
             
-            categories.forEach(cat => {
+            // Limit to 3 categories on desktop nav to prevent overflow
+            categories.slice(0, 3).forEach(cat => {
                 const escapedCat = cat.replace(/'/g, "\\'");
                 html += `<a href="index.html?category=${encodeURIComponent(cat)}#product-grid-container" onclick="window.handleCategoryClick(event, '${escapedCat}')" class="hover:text-teal-600 transition whitespace-nowrap">${cat}</a>`;
             });

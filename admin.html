@@ -720,7 +720,7 @@
                     for (let i = 1; i <= 3; i++) {
                         const file = document.getElementById(`hero${i}File`).files[0];
                         let url = document.getElementById(`currentHero${i}Url`).value;
-                        if (file) { url = await uploadImageToImgBB(file); }
+                        if (file) { url = await uploadImageToImgBB(file, null, true); }
                         if (url) { urls[`slide${i}`] = url; }
                     }
 
@@ -756,7 +756,7 @@
                 try {
                     let url1 = document.getElementById('currentBanner1Url').value;
 
-                    if (file1) { url1 = await uploadImageToImgBB(file1); }
+                    if (file1) { url1 = await uploadImageToImgBB(file1, null, true); }
 
                     await setDoc(doc(db, "settings", "confirmation_page"), {
                         banner1: url1,
@@ -790,7 +790,7 @@
                 try {
                     let url = document.getElementById('currentSiteLogoUrl').value;
 
-                    if (file) { url = await uploadImageToImgBB(file); }
+                    if (file) { url = await uploadImageToImgBB(file, null, true); }
 
                     await setDoc(doc(db, "settings", "general"), {
                         siteLogo: url,
@@ -963,7 +963,7 @@
                     let logoUrl = null;
                     let bannerUrl = null;
                     if (logoFile) logoUrl = await uploadImageToImgBB(logoFile);
-                    if (bannerFile) bannerUrl = await uploadImageToImgBB(bannerFile);
+                    if (bannerFile) bannerUrl = await uploadImageToImgBB(bannerFile, null, true);
 
                     const categoryRef = doc(db, "categories", categoryName);
 
@@ -1229,7 +1229,7 @@
                 }
                 if (bannerFile) {
                     statusMsg.textContent = 'Uploading banner image...';
-                    bannerUrl = await uploadImageToImgBB(bannerFile);
+                    bannerUrl = await uploadImageToImgBB(bannerFile, null, true);
                 }
 
                 const updatedData = {};
@@ -1282,7 +1282,7 @@
                     let imageUrl2 = '';
                     if (imageFile2) {
                         statusMsg.textContent = 'Uploading hover image...';
-                        imageUrl2 = await uploadImageToImgBB(imageFile2);
+                        imageUrl2 = await uploadImageToImgBB(imageFile2, null, true);
                     }
 
                     statusMsg.textContent = 'Processing data...';

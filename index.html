@@ -172,94 +172,54 @@
         /* ===== PREMIUM PRELOADER STYLES ===== */
         #kw-preloader {
             position: fixed;
-            inset: 0;
-            background: #f8f9fc;
-            z-index: 99999;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #ffffff;
+            z-index: 999999;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-direction: column;
-            transition: opacity 0.7s ease, visibility 0.7s ease;
+            transition: opacity 0.6s ease-in-out, visibility 0.6s;
         }
-
-        #kw-preloader.fade-out {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .kw-symbols-container {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 20px;
-            align-items: center;
-        }
-
-        .kw-symbol {
-            width: 38px;
-            height: 38px;
+        #kw-preloader.fade-out { opacity: 0; visibility: hidden; }
+        .hearts-loader-container { position: relative; display: inline-flex; align-items: center; justify-content: center; }
+        .hearts-loader-text {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 3.5rem;
+            color: #b6145d;
+            letter-spacing: -1px;
             position: relative;
+            z-index: 2;
         }
-
-        .kw-shape-bg {
-            fill: none;
-            stroke: rgba(0, 0, 0, 0.05);
-            stroke-width: 6;
-            stroke-linejoin: round;
-        }
-
-        .kw-shape-arc {
-            fill: none;
-            stroke-width: 8;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            transform-origin: 50px 50px;
-        }
-
-        .kw-shape-rose {
-            stroke: #8A3A54; /* Dark Rose */
-        }
-
-        .kw-shape-black {
-            stroke: #000000; /* Black */
-        }
-
-        .kw-anim-cw {
-            animation: spinClockwise 1.5s linear infinite;
-        }
-
-        .kw-anim-ccw {
-            animation: spinCounterClockwise 1.5s linear infinite;
-        }
-
-        .kw-arc-triangle { stroke-dasharray: 230; stroke-dashoffset: 70; }
-        .kw-arc-circle { stroke-dasharray: 220; stroke-dashoffset: 70; }
-        .kw-arc-square { stroke-dasharray: 280; stroke-dashoffset: 90; }
-
-        .kw-brand-text {
-            font-size: 20px;
-            font-weight: 700;
-            color: #8A3A54; /* Dark Rose */
-            letter-spacing: 3px;
+        .heart-loader-icon {
+            position: absolute;
+            fill: #c92a2a;
             opacity: 0;
-            transform: translateY(15px);
-            animation: textReveal 0.8s ease 1.2s forwards;
+            transform: scale(0);
+            animation: popHeart 2s ease-out infinite;
+        }
+        .heart-1 { top: -20px; left: 15%; width: 20px; animation-delay: 0s; }
+        .heart-2 { top: -35px; left: 45%; width: 28px; animation-delay: 0.3s; }
+        .heart-3 { top: -15px; left: 75%; width: 18px; animation-delay: 0.6s; }
+        .heart-4 { bottom: -20px; left: 30%; width: 16px; animation-delay: 0.9s; }
+        .heart-5 { bottom: -25px; left: 70%; width: 22px; animation-delay: 1.2s; }
+        .heart-6 { top: -5px; left: -10%; width: 15px; animation-delay: 1.5s; }
+        .heart-7 { bottom: 5px; right: -15%; width: 20px; animation-delay: 1.8s; }
+        @keyframes popHeart {
+            0% { opacity: 0; transform: scale(0) translateY(10px); }
+            20% { opacity: 1; transform: scale(1.1) translateY(0); }
+            40% { transform: scale(1) translateY(0); }
+            70% { opacity: 1; transform: scale(1) translateY(0); }
+            100% { opacity: 0; transform: scale(0) translateY(-15px); }
         }
 
-        @keyframes textReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0);
+        @media (max-width: 640px) {
+            .hearts-loader-container {
+                transform: scale(0.70);
             }
-        }
-
-        @keyframes spinClockwise {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes spinCounterClockwise {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(-360deg); }
         }
     </style>
 </head>
@@ -268,30 +228,16 @@
 
     <!-- ===== PREMIUM PRELOADER ===== -->
     <div id="kw-preloader">
-        <div class="kw-symbols-container">
-            <!-- Left: Triangle (Dark Rose) -->
-            <div class="kw-symbol">
-                <svg viewBox="0 0 100 100" style="overflow: visible;">
-                    <polygon points="50,15 85,85 15,85" class="kw-shape-bg" />
-                    <polygon points="50,15 85,85 15,85" class="kw-shape-arc kw-shape-rose kw-arc-triangle kw-anim-cw" />
-                </svg>
-            </div>
-            <!-- Center: Circle (Black) -->
-            <div class="kw-symbol">
-                <svg viewBox="0 0 100 100" style="overflow: visible;">
-                    <circle cx="50" cy="50" r="35" class="kw-shape-bg" />
-                    <circle cx="50" cy="50" r="35" class="kw-shape-arc kw-shape-black kw-arc-circle kw-anim-ccw" />
-                </svg>
-            </div>
-            <!-- Right: Square (Dark Rose) -->
-            <div class="kw-symbol">
-                <svg viewBox="0 0 100 100" style="overflow: visible;">
-                    <rect x="15" y="15" width="70" height="70" class="kw-shape-bg" />
-                    <rect x="15" y="15" width="70" height="70" class="kw-shape-arc kw-shape-rose kw-arc-square kw-anim-cw" />
-                </svg>
-            </div>
+        <div class="hearts-loader-container">
+            <svg class="heart-loader-icon heart-1" viewBox="0 0 32 29.6"><path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/></svg>
+            <svg class="heart-loader-icon heart-2" viewBox="0 0 32 29.6"><path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/></svg>
+            <svg class="heart-loader-icon heart-3" viewBox="0 0 32 29.6"><path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/></svg>
+            <svg class="heart-loader-icon heart-4" viewBox="0 0 32 29.6"><path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/></svg>
+            <svg class="heart-loader-icon heart-5" viewBox="0 0 32 29.6"><path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/></svg>
+            <svg class="heart-loader-icon heart-6" viewBox="0 0 32 29.6"><path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/></svg>
+            <svg class="heart-loader-icon heart-7" viewBox="0 0 32 29.6"><path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/></svg>
+            <div class="hearts-loader-text">Lovzmart</div>
         </div>
-        <div class="kw-brand-text">Lovzmart</div>
     </div>
 
     <script>
@@ -716,7 +662,7 @@
                         const wrapper = swiperContainer.querySelector('.swiper-wrapper');
                         wrapper.innerHTML = slides.map(url => `
                             <div class="swiper-slide bg-[#f8f7f2] h-auto">
-                                <img src="${url}" class="w-full h-auto object-cover" alt="Hero Banner" />
+                                <img src="${url}" class="w-full h-auto min-h-[220px] md:min-h-0 object-cover object-center" alt="Hero Banner" />
                             </div>
                         `).join('');
 
