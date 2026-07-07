@@ -37,10 +37,37 @@ export async function uploadImageToImgBB(file, statusCallback) {
         statusCallback(`Uploading ${file.name}...`);
     }
 
-    // Convert File to Base64 to prevent fetch hanging issues with raw File objects
+    // Convert File to WebP Base64 and compress using Canvas
     const base64Data = await new Promise((resolve, reject) => {
         const reader = new FileReader();
-        reader.onloadend = () => resolve(reader.result.split(',')[1]); // Get raw base64
+        reader.onload = (e) => {
+            const img = new Image();
+            img.onload = () => {
+                // Resize logic for compression (Max width/height 1200px)
+                const MAX_SIZE = 1200;
+                let width = img.width;
+                let height = img.height;
+
+                if (width > height && width > MAX_SIZE) {
+                    height = Math.round((height * MAX_SIZE) / width);
+                    width = MAX_SIZE;
+                } else if (height > MAX_SIZE) {
+                    width = Math.round((width * MAX_SIZE) / height);
+                    height = MAX_SIZE;
+                }
+
+                const canvas = document.createElement('canvas');
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, width, height);
+                // Convert to WebP format (quality 0.75 for better compression)
+                const dataURL = canvas.toDataURL('image/webp', 0.75);
+                resolve(dataURL.split(',')[1]); // Get raw base64
+            };
+            img.onerror = reject;
+            img.src = e.target.result;
+        };
         reader.onerror = reject;
         reader.readAsDataURL(file);
     });
@@ -75,8 +102,8 @@ onSnapshot(logoDocRef, (docSnap) => {
         });
 
         const adminText = document.querySelector('.text-white.text-lg.font-bold.tracking-widest');
-        if (adminText && adminText.textContent.includes('Nadee Fashion')) {
-            adminText.innerHTML = `<div class="flex items-center gap-3"><img src="${logoUrl}" class="h-8 w-auto object-contain"><span>Nadee Fashion</span></div>`;
+        if (adminText && adminText.textContent.includes('Lovzmart')) {
+            adminText.innerHTML = `<div class="flex items-center gap-3"><img src="${logoUrl}" class="h-8 w-auto object-contain"><span>Lovzmart</span></div>`;
         }
     }
 });

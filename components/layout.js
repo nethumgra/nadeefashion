@@ -1,7 +1,7 @@
 // Auto-generated layout components
 
 export const headerHTML = `
-<div class="bg-black text-white py-2 text-sm">
+<div class="text-white py-2 text-sm" style="background-color: #b6145d;">
         <div class="w-full max-w-[1920px] xl:px-12 mx-auto flex justify-between items-center px-4">
             <button class="text-gray-400 hover:text-white"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button>
             <span class="text-xs md:text-sm">Free Standard Shipping on Orders Over Rs. 5000</span>
@@ -20,8 +20,7 @@ export const headerHTML = `
             <!-- Center: Logo -->
             <div class="absolute left-1/2 transform -translate-x-1/2 flex items-center">
                 <a href="index.html" class="flex items-center">
-                    <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Nadee Fashion Logo" class="h-8 md:h-10 mr-2 site-logo-img">
-                    <span class="text-xl md:text-2xl font-semibold tracking-widest text-black">Nadee Fashion</span>
+                    <span class="text-2xl md:text-3xl font-bold tracking-tight" style="color: var(--primary);">Lovzmart<span class="text-amber-500">.</span></span>
                 </a>
             </div>
 
@@ -56,7 +55,7 @@ export const footerHTML = `
         <div class="w-full max-w-[1920px] xl:px-12 mx-auto py-10 px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-lg font-bold mb-4">Nadee Fashion</h3>
+                    <h3 class="text-lg font-bold mb-4">Lovzmart</h3>
                     <p class="text-gray-400 text-sm">
                         Discover premium quality t-shirts designed for comfort and style. Your new favorite tee awaits.
                     </p>
@@ -95,7 +94,7 @@ export const footerHTML = `
                 </div>
             </div>
             <div class="mt-8 pt-8 border-t border-gray-700 text-center text-sm text-gray-400">
-                <p>&copy; 2025 Nadee Fashion. All Rights Reserved.</p>
+                <p>&copy; 2025 Lovzmart. All Rights Reserved.</p>
             </div>
         </div>
     </footer>

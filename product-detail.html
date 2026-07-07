@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nadee Fashion - Product Details</title>
+    <title>Lovzmart - Product Details</title>
     <script src="https://cdn.tailwindcss.com"></script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -412,7 +412,7 @@
                 el.style.width = '';
             });
 
-            document.title = `${product.name} - Nadee Fashion`;
+            document.title = `${product.name} - Lovzmart`;
             
             const breadcrumbs = document.getElementById('breadcrumbs');
             breadcrumbs.innerHTML = `
@@ -424,13 +424,19 @@
             `;
 
             const brandEl = document.getElementById('product-brand');
-            if (brandEl) brandEl.textContent = product.brand || 'Nadee Fashion';
+            if (brandEl) brandEl.textContent = product.brand || 'Lovzmart';
             
             const nameEl = document.getElementById('product-name');
-            if (nameEl) nameEl.textContent = product.name;
+            if (nameEl) {
+                nameEl.textContent = product.name;
+                nameEl.classList.remove('h-10', 'w-full');
+            }
             
             const priceEl = document.getElementById('product-price');
-            if (priceEl) priceEl.textContent = `Rs. ${product.price.toLocaleString()}`;
+            if (priceEl) {
+                priceEl.textContent = `Rs. ${product.price.toLocaleString()}`;
+                priceEl.classList.remove('h-10', 'w-1/2');
+            }
             
             const colorSelectorWrapper = document.getElementById('color-selector-wrapper');
             const colorSelector = document.getElementById('color-selector');
@@ -746,7 +752,7 @@
                 document.getElementById('signup-indicator').classList.replace('bg-transparent', 'bg-black');
                 document.getElementById('login-indicator').classList.replace('bg-black', 'bg-transparent');
                 document.getElementById('auth-title').textContent = 'Create Account';
-                document.getElementById('auth-subtitle').textContent = 'Join Nadee Fashion today.';
+                document.getElementById('auth-subtitle').textContent = 'Join Lovzmart today.';
                 signupForm.classList.remove('hidden'); loginForm.classList.add('hidden');
             });
 

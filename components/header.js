@@ -13,7 +13,7 @@ window.handleCategoryClick = function(e, categoryName) {
     }
 };
 
-document.write(`<div class="text-white py-2 text-sm" style="background-color: var(--primary-hover);">
+document.write(`<div class="text-white py-2 text-sm" style="background-color: #b6145d;">
         <div class="w-full max-w-[1920px] xl:px-12 mx-auto flex justify-between items-center px-4">
             <button class="text-white hover:opacity-85"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button>
             <span class="text-xs md:text-sm">Free Standard Shipping on Orders Over Rs. 5,000</span>
@@ -22,23 +22,13 @@ document.write(`<div class="text-white py-2 text-sm" style="background-color: va
     </div>
 
     <nav class="bg-white text-gray-800 sticky top-0 z-40 border-b shadow-sm">
-        <style>
-            @media (max-width: 480px) {
-                .mobile-logo-text {
-                    display: none !important;
-                }
-                .mobile-logo-img {
-                    margin-right: 0 !important;
-                }
-            }
-        </style>
+
         <!-- ====== DESKTOP NAV ====== -->
         <div class="hidden md:flex w-full max-w-[1920px] xl:px-12 mx-auto px-4 py-3 items-center justify-between gap-6">
             
             <!-- Left: Logo -->
             <a href="index.html" class="flex items-center flex-shrink-0">
-                <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Nadee Fashion Logo" class="h-9 mr-2 site-logo-img">
-                <span class="text-xl font-semibold tracking-widest text-black">Nadee Fashion</span>
+                <span class="text-2xl font-bold tracking-tight" style="color: var(--primary);">Lovzmart<span class="text-amber-500">.</span></span>
             </a>
 
             <!-- Center: Nav Links -->
@@ -87,8 +77,7 @@ document.write(`<div class="text-white py-2 text-sm" style="background-color: va
                     <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 </button>
                 <a href="index.html" class="flex items-center">
-                    <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Nadee Fashion Logo" class="h-8 mr-2 mobile-logo-img site-logo-img">
-                    <span class="text-lg font-semibold tracking-widest text-black mobile-logo-text">Nadee Fashion</span>
+                    <span class="text-xl font-bold tracking-tight mobile-logo-text" style="color: var(--primary);">Lovzmart<span class="text-amber-500">.</span></span>
                 </a>
             </div>
 

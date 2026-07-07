@@ -52,8 +52,7 @@ document.write(`
             <!-- Column 1: Brand -->
             <div class="lg:col-span-3">
                 <a href="index.html" class="flex items-center gap-2 mb-6">
-                    <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Logo" class="h-8 site-logo-img">
-                    <span class="text-xl font-black tracking-wider text-black">Nadee Fashion</span>
+                    <span class="text-2xl font-bold tracking-tight" style="color: var(--primary);">Lovzmart<span class="text-amber-500">.</span></span>
                 </a>
                 <p class="text-sm text-gray-600 leading-relaxed mb-8">
                     Discover a versatile range of modern essentials, crafted for comfort, style, and quality. From casuals to classics, we bring you looks that fit every occasion.
@@ -162,7 +161,7 @@ document.write(`
             </div>
 
             <div class="text-sm text-gray-400">
-                &copy; 2024 Nadee Fashion. All rights reserved.
+                &copy; 2024 Lovzmart. All rights reserved.
             </div>
 
             <div class="flex items-center gap-2">

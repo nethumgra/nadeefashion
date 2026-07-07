@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nadee Fashion - Admin Dashboard</title>
+    <title>Lovzmart - Admin Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -73,7 +73,7 @@
                 <div class="flex items-center gap-2 mb-2 text-[#CD8F82]">
                     <span class="text-4xl font-black font-['Outfit',sans-serif]">NF</span>
                 </div>
-                <div class="text-white text-lg font-bold tracking-widest font-['Outfit',sans-serif]">Nadee Fashion</div>
+                <div class="text-white text-lg font-bold tracking-widest font-['Outfit',sans-serif]">Lovzmart</div>
             </div>
             <nav class="flex-1 px-4 py-2 space-y-1.5 overflow-y-auto">
                 <a href="#dashboard"
@@ -391,7 +391,7 @@
                                     <div class="flex items-center justify-center gap-2 mb-2 text-[#CD8F82]">
                                         <span class="text-5xl font-black font-['Outfit',sans-serif]">NF</span>
                                     </div>
-                                    <h2 class="text-2xl font-bold tracking-widest text-gray-900 mb-1 font-['Outfit',sans-serif]">Nadee Fashion</h2>
+                                    <h2 class="text-2xl font-bold tracking-widest text-gray-900 mb-1 font-['Outfit',sans-serif]">Lovzmart</h2>
                                     <p class="text-gray-500 text-sm mb-1">Admin Login</p>
                                     <p class="text-xs text-gray-400">International Administrator Portal</p>
                                     <p class="text-[10px] text-gray-400 mt-1">المدير | 操作员 | भावी दी</p>
@@ -431,7 +431,7 @@
                                     <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
                                     Language: English ▾
                                 </div>
-                                <p>Copyright © 2024 Nadee Fashion</p>
+                                <p>Copyright © 2024 Lovzmart</p>
                             </div>
                         </div>
                     `;
@@ -1048,7 +1048,7 @@
         }
 
         function createEmailHtml(orderData, orderId) {
-            return `<div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #ddd; padding: 20px;"><h2 style="color: #D98F97; text-align: center;">Your Nadee Fashion Order is Confirmed!</h2><p>Hi ${orderData.customer.firstName},</p><p>Your order number is <strong>#${orderId.substring(0, 6)}</strong>.</p><h3 style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">Order Summary</h3><table style="width: 100%; border-collapse: collapse;"><tr style="background-color: #f3f4f6;"><th style="padding: 10px; text-align: left;">Product</th><th style="padding: 10px; text-align: right;">Price</th></tr><tr><td style="padding: 10px; border-bottom: 1px solid #ddd;">${orderData.item.name}<br><small>Size: ${orderData.item.size}, Qty: ${orderData.item.quantity}</small></td><td style="padding: 10px; border-bottom: 1px solid #ddd; text-align: right;">Rs. ${orderData.payment.subtotal.toLocaleString()}</td></tr></table><table style="width: 100%; margin-top: 20px;"><tr><td style="text-align: right;">Subtotal:</td><td style="text-align: right;">Rs. ${orderData.payment.subtotal.toLocaleString()}</td></tr><tr><td style="text-align: right;">Delivery:</td><td style="text-align: right;">Rs. ${orderData.payment.deliveryFee.toLocaleString()}</td></tr><tr><td style="text-align: right; font-weight: bold;">Total:</td><td style="text-align: right; font-weight: bold;">Rs. ${orderData.payment.total.toLocaleString()}</td></tr></table><h3 style="border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-top: 20px;">Shipping Address</h3><p style="line-height: 1.6;">${orderData.customer.firstName} ${orderData.customer.lastName}<br>${orderData.customer.address}<br>${orderData.customer.city}<br>${orderData.customer.phone}</p><p>Thank you for shopping with us!</p><p><strong>- Nadee Fashion Team</strong></p></div>`;
+            return `<div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #ddd; padding: 20px;"><h2 style="color: #D98F97; text-align: center;">Your Lovzmart Order is Confirmed!</h2><p>Hi ${orderData.customer.firstName},</p><p>Your order number is <strong>#${orderId.substring(0, 6)}</strong>.</p><h3 style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">Order Summary</h3><table style="width: 100%; border-collapse: collapse;"><tr style="background-color: #f3f4f6;"><th style="padding: 10px; text-align: left;">Product</th><th style="padding: 10px; text-align: right;">Price</th></tr><tr><td style="padding: 10px; border-bottom: 1px solid #ddd;">${orderData.item.name}<br><small>Size: ${orderData.item.size}, Qty: ${orderData.item.quantity}</small></td><td style="padding: 10px; border-bottom: 1px solid #ddd; text-align: right;">Rs. ${orderData.payment.subtotal.toLocaleString()}</td></tr></table><table style="width: 100%; margin-top: 20px;"><tr><td style="text-align: right;">Subtotal:</td><td style="text-align: right;">Rs. ${orderData.payment.subtotal.toLocaleString()}</td></tr><tr><td style="text-align: right;">Delivery:</td><td style="text-align: right;">Rs. ${orderData.payment.deliveryFee.toLocaleString()}</td></tr><tr><td style="text-align: right; font-weight: bold;">Total:</td><td style="text-align: right; font-weight: bold;">Rs. ${orderData.payment.total.toLocaleString()}</td></tr></table><h3 style="border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-top: 20px;">Shipping Address</h3><p style="line-height: 1.6;">${orderData.customer.firstName} ${orderData.customer.lastName}<br>${orderData.customer.address}<br>${orderData.customer.city}<br>${orderData.customer.phone}</p><p>Thank you for shopping with us!</p><p><strong>- Lovzmart Team</strong></p></div>`;
         }
 
         async function openEditProductModal(productId) {

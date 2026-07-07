@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout - Nadee Fashion</title>
+    <title>Checkout - Lovzmart</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -583,7 +583,7 @@
                 document.getElementById('signup-indicator').classList.replace('bg-transparent', 'bg-black');
                 document.getElementById('login-indicator').classList.replace('bg-black', 'bg-transparent');
                 document.getElementById('auth-title').textContent = 'Create Account';
-                document.getElementById('auth-subtitle').textContent = 'Join Nadee Fashion today.';
+                document.getElementById('auth-subtitle').textContent = 'Join Lovzmart today.';
                 signupForm.classList.remove('hidden'); loginForm.classList.add('hidden');
             });
             loginForm.addEventListener('submit', async e => { e.preventDefault(); try { await signInWithEmailAndPassword(auth, loginForm['login-email'].value, loginForm['login-password'].value); authModal.classList.add('hidden'); } catch (error) { alert(error.message); } });
